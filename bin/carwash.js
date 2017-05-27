@@ -22,7 +22,7 @@ vorpal
 
 vorpal
   .delimiter('Car Wash: ')
-  .log(`Type 'start' to enter the Car Wash...`)
+  .log(`Type 'start' to enter the Car Wash or 'help' to see all possible commands...`)
   .show();
 
 
