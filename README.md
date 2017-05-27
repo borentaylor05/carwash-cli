@@ -1,7 +1,7 @@
 ## Installation
 `npm install carwash-cli -g`
 
-## Running
+## Run
 `carwash-start`
 
 ## Commands
