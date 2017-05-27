@@ -31,20 +31,22 @@ function startCarWash(args, callback) {
   if (!carWash) {
     carWash = new CarWash(this);
   }
-  carWash.getLicensePlateNumber(success => {
-    if (!success) {
+  carWash.getLicensePlateNumber(err => {
+    if (err) {
+      this.log(err);
       this.log(NEXT);
       return vorpal.show();
     }
 
-    carWash.getVehicleType(success => {
-      if (!success) {
+    carWash.getVehicleType(err => {
+      if (err) {
+        this.log(err);
         this.log(NEXT);
         return vorpal.show();
       }
 
-      carWash.washVehicle(success => {
-        if (success) {
+      carWash.washVehicle(err => {
+        if (!err) {
           carWash.completeTransaction();
         }
 
