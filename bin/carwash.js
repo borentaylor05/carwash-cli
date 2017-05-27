@@ -3,6 +3,7 @@
 const vorpal = require('vorpal')();
 const VEHICLES = require('../constants').VEHICLES;
 const WASHABLE_TYPES = [VEHICLES.CAR, VEHICLES.TRUCK];
+const NEXT = `\nType 'next' to wash the next vehicle...`;
 
 let CarWash = require('../lib/carWash');
 let carWash;
@@ -30,9 +31,15 @@ function startCarWash(args, callback) {
   if (!carWash) {
     carWash = new CarWash(this);
   }
-  carWash.getLicensePlateNumber(() => {
+  carWash.getLicensePlateNumber(success => {
+    if (!success) {
+      this.log(NEXT);
+      return vorpal.show();
+    }
+
     carWash.getVehicleType(success => {
       if (!success) {
+        this.log(NEXT);
         return vorpal.show();
       }
 
@@ -41,7 +48,7 @@ function startCarWash(args, callback) {
           carWash.completeTransaction();
         }
 
-        this.log(`Type 'next' to wash the next vehicle...`);
+        this.log(NEXT);
         vorpal.show();
       });
     });
