@@ -10,3 +10,6 @@
 `next` - wash the next car (running `start` multiple times works too)
 
 `transactions` - show the last 10 Car Wash transactions
+
+### Node Version
+`6.3.1`
